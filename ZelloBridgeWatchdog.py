@@ -185,12 +185,12 @@ def main():
                             error_code = connector.get('last_error', {}).get('code')
                             logging.info(f"Connector '{connector.get('name', 'N/A')}' error code is {error_code}.")
 
-                            # Check if the error code matches 3002 - Invalid Zello credentials
-                            if error_code == 3002:
+                            # Check if the error code matches 3001 or 3002
+                            if error_code in (3001, 3002):
                                 found_error = True
 
                 if found_error:
-                    logging.info("Login error found. Generating new tokens...")
+                    logging.info("Connection error found. Generating new tokens...")
                     update_connector_tokens(config_path)
 
                     logging.info("Restarting ZelloBridge")
@@ -222,3 +222,4 @@ def main():
 # This is the entry point of the script, which calls the main function.
 if __name__ == '__main__':
     main()
+
