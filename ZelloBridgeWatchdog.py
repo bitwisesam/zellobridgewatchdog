@@ -95,7 +95,7 @@ def update_connector_tokens(file_path):
 
     # Read the JSON configuration data from the file.
     try:
-        with open(file_path, 'r') as f:
+        with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
     except (json.JSONDecodeError, IOError) as e:
         logging.error(f"Error reading the file: {e}")
